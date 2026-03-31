@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cheating Detection Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <header>
+    <div class="logo">🎓 ExamGuard AI</div>
+    <div class="header-right">
+      <span id="clock">--:--:--</span>
+      <span id="connection-badge" class="badge badge-ok">● LIVE</span>
+    </div>
+  </header>
+
+  <!-- ── Main layout ─────────────────────────────────────── -->
+  <main>
+
+    <!-- Left: live feed -->
+    <section class="panel feed-panel">
+      <h2>Live Feed</h2>
+      <div class="feed-wrapper">
+        <img id="live-feed"
+             src="/video_feed"
+             alt="Live camera feed"
+             onerror="this.src='/static/placeholder.png'" />
+      </div>
+    </section>
+
+    <!-- Right: score + alerts + history -->
+    <section class="panel info-panel">
+
+      <!-- Score gauge -->
+      <div class="score-card" id="score-card">
+        <div class="score-label">Risk Score</div>
+        <div class="score-value" id="score-value">0</div>
+        <div class="score-bar-bg">
+          <div class="score-bar-fill" id="score-bar"></div>
+        </div>
+        <div class="risk-level" id="risk-level">LOW</div>
+      </div>
+
+      <!-- Active events -->
+      <div class="sub-panel">
+        <h3>Active Signals</h3>
+        <ul id="active-events" class="event-list">
+          <li class="event-item ok">✔ All clear</li>
+        </ul>
+      </div>
+
+      <!-- Alert history -->
+      <div class="sub-panel history-panel">
+        <h3>Alert History <span id="history-count" class="count-badge">0</span></h3>
+        <div id="history-list" class="history-list">
+          <p class="muted">No alerts yet.</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Toast notifications -->
+  <div id="toast-container"></div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
